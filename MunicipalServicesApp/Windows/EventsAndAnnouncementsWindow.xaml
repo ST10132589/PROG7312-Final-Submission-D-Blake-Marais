@@ -1,0 +1,332 @@
+﻿<Window x:Class="MunicipalServicesApp.Windows.EventsAndAnnouncementsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MunicipalServicesApp.Windows"
+        mc:Ignorable="d"
+        Title="Events and Announcements"
+        Height="540"
+        Width="960"
+        Closing="Window_Closing"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TabControl x:Name="MainTabControl"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    Margin="10"
+                    VerticalContentAlignment="Stretch"
+                    Grid.Row="0">
+            <TabItem Header="Local Announcements"
+                     FontFamily="Tw Cen MT">
+                <ListView ItemsSource="{Binding Announcements}"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="2" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="Gray"
+                                    BorderThickness="1"
+                                    Margin="5"
+                                    Padding="10">
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}"
+                                               FontSize="16"
+                                               FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"
+                                               FontSize="12"
+                                               Foreground="Gray" />
+                                    <TextBlock Text="{Binding Description}"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </TabItem>
+
+            <TabItem Header="Events"
+                     FontFamily="Tw Cen MT">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top"
+                                Margin="10"
+                                Grid.Row="0">
+                        <ComboBox Width="150"
+                                  x:Name="CategoryComboBox"
+                                  ItemsSource="{Binding Categories}"
+                                  SelectedItem="{Binding SelectedCategory}"
+                                  VerticalContentAlignment="Center" />
+                        <Button Content="Search by Category"
+                                Width="130"
+                                Height="30"
+                                Margin="10,0,0,0"
+                                Background="#007FFF"
+                                FontFamily="Tw Cen MT"
+                                VerticalContentAlignment="Center"
+                                Click="SearchByCategory_Click" />
+                        <DatePicker Width="130"
+                                    x:Name="StartDatePicker"
+                                    VerticalContentAlignment="Center"
+                                    Margin="10,0,0,0"
+                                    SelectedDate="{Binding StartDate}" />
+                        <DatePicker Width="130"
+                                    x:Name="EndDatePicker"
+                                    VerticalContentAlignment="Center"
+                                    Margin="10,0,0,0"
+                                    SelectedDate="{Binding EndDate}" />
+                        <Button Content="Search Between Dates"
+                                Width="130"
+                                Height="30"
+                                Margin="10,0,0,0"
+                                Background="#007FFF"
+                                FontFamily="Tw Cen MT"
+                                Click="SearchByDate_Click" />
+                        <Button x:Name="btnClearFilters"
+                                Content="Clear Filters"
+                                Width="130"
+                                Height="30"
+                                Margin="10,0,0,0"
+                                Background="#007FFF"
+                                FontFamily="Tw Cen MT"
+                                VerticalContentAlignment="Center"
+                                Click="ClearFilters_Click" />
+                    </StackPanel>
+
+                    <ListView x:Name="EventsListBox"
+                              ItemsSource="{Binding Events}"
+                              ScrollViewer.VerticalScrollBarVisibility="Auto"
+                              ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                              Grid.Row="1">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment"
+                                        Value="Stretch" />
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="3" />
+                            </ItemsPanelTemplate>
+                        </ListView.ItemsPanel>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderThickness="2"
+                                        Margin="5"
+                                        Padding="10">
+                                    <Border.Style>
+                                        <Style TargetType="Border">
+                                            <Setter Property="BorderBrush"
+                                                    Value="Gray" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Music/Culture">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#FF6F61" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Health/Fitness">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#6B5B95" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Art/Exhibition">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#88B04B" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Food/Drink">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#F7CAC9" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Books/Literature">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#92A8D1" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Science/Technology">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#955251" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Theater/Drama">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#B565A7" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Category}"
+                                                             Value="Dance/Performance">
+                                                    <Setter Property="BorderBrush"
+                                                            Value="#009B77" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Border.Style>
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Title}"
+                                                   FontSize="16"
+                                                   FontWeight="Bold" />
+                                        <TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"
+                                                   FontSize="12"
+                                                   Foreground="Gray" />
+                                        <TextBlock Text="{Binding Category}"
+                                                   FontSize="12"
+                                                   Foreground="Gray" />
+                                        <TextBlock Text="{Binding Location}"
+                                                   FontSize="12"
+                                                   Foreground="Gray" />
+                                        <TextBlock Text="{Binding EventType}"
+                                                   FontSize="12"
+                                                   Foreground="Gray" />
+                                        <TextBlock Text="{Binding Description}"
+                                                   TextWrapping="Wrap" />
+                                        <CheckBox Content="I'm Interested"
+                                                  IsChecked="{Binding IsInterested, Mode=TwoWay}"
+                                                  Command="{Binding DataContext.ToggleInterestCommand, RelativeSource={RelativeSource AncestorType=Window}}"
+                                                  CommandParameter="{Binding}" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Recommended Events"
+                     FontFamily="Tw Cen MT">
+                <ListView ItemsSource="{Binding RecommendedEvents}"
+                          ScrollViewer.VerticalScrollBarVisibility="Auto"
+                          ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3" />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="2"
+                                    Margin="5"
+                                    Padding="10">
+                                <Border.Style>
+                                    <Style TargetType="Border">
+                                        <Setter Property="BorderBrush"
+                                                Value="Gray" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Music/Culture">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#FF6F61" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Health/Fitness">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#6B5B95" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Art/Exhibition">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#88B04B" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Food/Drink">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#F7CAC9" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Books/Literature">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#92A8D1" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Science/Technology">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#955251" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Theater/Drama">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#B565A7" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Category}"
+                                                         Value="Dance/Performance">
+                                                <Setter Property="BorderBrush"
+                                                        Value="#009B77" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Border.Style>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Title}"
+                                               FontSize="16"
+                                               FontWeight="Bold" />
+                                    <TextBlock Text="{Binding Date, StringFormat={}{0:dd/MM/yyyy}}"
+                                               FontSize="12"
+                                               Foreground="Gray" />
+                                    <TextBlock Text="{Binding Category}"
+                                               FontSize="12"
+                                               Foreground="Gray" />
+                                    <TextBlock Text="{Binding Location}"
+                                               FontSize="12"
+                                               Foreground="Gray" />
+                                    <TextBlock Text="{Binding EventType}"
+                                               FontSize="12"
+                                               Foreground="Gray" />
+                                    <TextBlock Text="{Binding Description}"
+                                               TextWrapping="Wrap" />
+                                </StackPanel>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </TabItem>
+
+
+        </TabControl>
+
+        <TextBlock Text="{Binding NoEventsMessage}"
+                   Foreground="Red"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Top"
+                   Margin="10" />
+
+        <Button x:Name="btnBack"
+                Content="Back To Main Menu"
+                Width="150"
+                Height="30"
+                Margin="10"
+                Background="#007FFF"
+                FontFamily="Tw Cen MT"
+                VerticalContentAlignment="Center"
+                HorizontalAlignment="Left"
+                Grid.Row="1"
+                Click="Back_Click" />
+    </Grid>
+</Window>

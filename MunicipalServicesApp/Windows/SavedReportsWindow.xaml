@@ -1,0 +1,86 @@
+﻿<Window x:Class="MunicipalServicesApp.Windows.SavedReportsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MunicipalServicesApp.Windows"
+        mc:Ignorable="d"
+        Closing="Window_Closing"
+        Title="Saved Reports" Height="540" Width="960">
+    <Grid x:Name="grdBackGround"
+          Background="White">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="75" />
+
+        </Grid.RowDefinitions>
+
+        <Label x:Name="btnBack"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Center"
+               Content="🔙"
+               FontFamily="Consolas"
+               FontSize="36"
+               MouseEnter="btnBack_MouseEnter"
+               MouseLeave="btnBack_MouseLeave"
+               MouseLeftButtonUp="btnBack_MouseLeftButtonUp" />
+
+        <ListBox x:Name="lstSavedReports"
+                 Grid.Row="1"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 Width="800"
+                 Height="350"
+                 FontFamily="Tw Cen MT"
+                 FontSize="24">
+            <ListBox.Background>
+                <SolidColorBrush Color="White"
+                                 Opacity="0.45" />
+            </ListBox.Background>
+            <ListBox.Foreground>
+                <SolidColorBrush Color="Black"
+                                 Opacity="1" />
+            </ListBox.Foreground>
+        </ListBox>
+
+        <Button x:Name="btnViewReport"
+                Grid.Row="2"
+                Content="View Selected Report"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="#007FFF"
+                Width="240"
+                Height="45"
+                FontFamily="Tw Cen MT"
+                FontSize="24"
+                BorderBrush="Black"
+                Click="btnViewReport_Click" Margin="80,0,0,0" />
+
+        <ComboBox x:Name="cmbSortOrder"
+          HorizontalAlignment="Left"
+          Grid.Row="2"
+          VerticalAlignment="Center"
+          Width="200"
+          Height="45"
+          FontFamily="Tw Cen MT"
+          FontSize="16" Margin="480,0,0,0">
+            <ComboBoxItem Content="Ascending" Tag="Ascending" />
+            <ComboBoxItem Content="Descending" Tag="Descending" />
+        </ComboBox>
+
+        <Button x:Name="btnOrderByPriority"
+                Grid.Row="2"
+                Content="Order By Priority"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Center"
+                Background="#007FFF"
+                Width="180"
+                Height="30"
+                FontFamily="Tw Cen MT"
+                FontSize="18"
+                BorderBrush="Black"
+                Click="btnOrderByPriority_Click" Margin="700,0,0,0"/>
+    </Grid>
+</Window>

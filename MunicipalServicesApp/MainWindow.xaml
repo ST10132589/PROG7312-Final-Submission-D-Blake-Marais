@@ -1,0 +1,99 @@
+﻿<Window x:Class="MunicipalServicesApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MunicipalServicesApp"
+        mc:Ignorable="d"
+        Title="Main Menu"
+        Height="540"
+        Width="960"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Closing="Window_Closing">
+
+    <Grid Background="White">
+
+        <Label Content="Western Cape Municipal Services App"
+               HorizontalAlignment="Center"
+               Margin="0,10,0,0"
+               VerticalAlignment="Top"
+               FontFamily="Tw Cen MT"
+               FontSize="60"
+               BorderBrush="#007FFF"
+               BorderThickness="4" />
+
+
+        <Grid Margin="0,111,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Button x:Name="btnReportIssues"
+                    Content="Report Issues"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#007FFF"
+                    Width="560"
+                    Height="82"
+                    FontFamily="Tw Cen MT"
+                    FontSize="42"
+                    BorderBrush="Black"
+                    Grid.Row="0"
+                    Click="btnReportIssues_Click">
+
+            </Button>
+
+            <Button x:Name="btnViewSavedReports"
+                    Content="View Saved Reports"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#007FFF"
+                    Width="560"
+                    Height="82"
+                    FontFamily="Tw Cen MT"
+                    FontSize="42"
+                    BorderBrush="Black"
+                    Grid.Row="1"
+                    Click="btnViewSavedReports_Click">
+            </Button>
+
+            <Button x:Name="btnLocalEvents"
+                    Content="Local Events"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#007FFF"
+                    Width="560"
+                    Height="82"
+                    FontFamily="Tw Cen MT"
+                    FontSize="42"
+                    BorderBrush="Black"
+                    FontWeight="Medium"
+                    Grid.Row="2"
+                    Click="btnLocalEvents_Click">
+
+            </Button>
+
+            <Button x:Name="btnServiceRequestStatus" 
+                    Content="Service Request Status"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Background="#007FFF"
+                    Width="560"
+                    Height="82"
+                    FontFamily="Tw Cen MT"
+                    FontSize="42"
+                    BorderBrush="Black"
+                    Grid.Row="3"
+                    Click="btnServiceRequestStatus_Click">
+            </Button>
+
+           
+
+        </Grid>
+
+    </Grid>
+</Window>

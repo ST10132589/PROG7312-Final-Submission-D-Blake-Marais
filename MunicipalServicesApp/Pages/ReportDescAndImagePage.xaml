@@ -1,0 +1,155 @@
+﻿<Page x:Class="MunicipalServicesApp.Pages.ReportDescAndImagePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:MunicipalServicesApp.Pages"
+      mc:Ignorable="d"
+      d:DesignHeight="450"
+      d:DesignWidth="960"
+      Title="ReportDescAndImagePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Provide a Detailed Description Below:"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.Row="0"
+               Grid.Column="1"
+               FontFamily="Tw Cen MT"
+               FontSize="40" />
+
+        <RichTextBox x:Name="rtxDetailedDescription"
+                     HorizontalAlignment="Center"
+                     HorizontalContentAlignment="Center"
+                     VerticalAlignment="Center"
+                     VerticalContentAlignment="Center"
+                     Grid.Row="1"
+                     Grid.Column="1"
+                     Width="498"
+                     Height="55"
+                     FontFamily="Tw Cen MT"
+                     FontSize="18"
+                     LostFocus="rtxDetailedDescription_LostFocus"
+                     TextChanged="rtxDetailedDescription_TextChanged"
+                     PreviewKeyDown="rtxDetailedDescription_PreviewKeyDown">
+            <RichTextBox.Background>
+                <SolidColorBrush Color="White"
+                                 Opacity="0.45" />
+            </RichTextBox.Background>
+            <RichTextBox.Foreground>
+                <SolidColorBrush Color="Black"
+                                 Opacity="1" />
+            </RichTextBox.Foreground>
+        </RichTextBox>
+
+        <Border BorderBrush="Black"
+                BorderThickness="2"
+                HorizontalAlignment="Left"
+                Grid.Column="1"
+                Margin="120,0,0,0"
+                Grid.Row="3"
+                VerticalAlignment="Center"
+                Width="280"
+                Height="150">
+            <Image x:Name="imgPreview"
+                   Width="280"
+                   Height="150" Margin="-2,-2,-2,-2" />
+        </Border>
+
+        <Label Content="Select Priority"
+       HorizontalAlignment="Left"
+       Grid.Row="3"
+       Grid.Column="1"
+       VerticalAlignment="Top"
+               Margin="549,28,0,0"
+       FontFamily="Tw Cen MT"
+       FontSize="16" />
+
+        <ComboBox x:Name="cmbPriority"
+          HorizontalAlignment="Left"
+          VerticalAlignment="Center"
+          Margin="498,0,0,0"
+          Grid.Row="3"
+          Grid.Column="1"
+          Width="200"
+          Height="30"
+          FontFamily="Tw Cen MT"
+          FontSize="16" SelectionChanged="cmbPriority_SelectionChanged">
+            <ComboBoxItem Content="High" Tag="1" />
+            <ComboBoxItem Content="Medium" Tag="2" />
+            <ComboBoxItem Content="Low" Tag="3" />
+        </ComboBox>
+
+
+        <Label Content="Image Preview"
+               HorizontalAlignment="Left"
+               Margin="208,0,0,0"
+               Grid.Row="2"
+               Grid.Column="1"
+               VerticalAlignment="Center"
+               FontFamily="Tw Cen MT"
+               FontSize="16">
+        </Label>
+
+        <Button x:Name="btnAttachFile"
+                Content="Click to Attach a File"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,10,0,0"
+                Grid.Row="4"
+                Grid.Column="1"
+                Width="220"
+                Height="45"
+                FontFamily="Tw Cen MT"
+                FontSize="24"
+                Background="#007FFF"
+                BorderBrush="Black"
+                Click="btnAttachFile_Click" />
+
+        <Button x:Name="btnSubmitReport"
+                Content="Submit Report"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Margin="0,10,0,0"
+                Grid.Row="5"
+                Grid.Column="1"
+                Width="220"
+                Height="45"
+                FontFamily="Tw Cen MT"
+                FontSize="24"
+                Background="#007FFF"
+                BorderBrush="Black"
+                Click="btnSubmitReport_Click" />
+
+
+
+
+        <ProgressBar x:Name="prgBar"
+                     Grid.Row="6"
+                     Grid.Column="1"
+                     Width="820"
+                     Height="20"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Bottom"
+                     Margin="0,0,0,20"
+                     Minimum="0"
+                     Maximum="100"
+                     Value="0" />
+    </Grid>
+</Page>
