@@ -77,15 +77,24 @@ namespace MunicipalServicesApp.Windows
         }
         private void btnOrderByPriority_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = (ComboBoxItem)cmbSortOrder.SelectedItem;
-            bool ascending = selectedItem.Tag.ToString() == "Ascending";
-            var sortedReports = SavedReports.GetReportsSortedByPriority(ascending);
-            lstSavedReports.Items.Clear();
-            for (int i = 0; i < sortedReports.Count; i++)
+            if(cmbSortOrder.SelectedIndex == -1)
             {
-                string priorityText = GetPriorityText(sortedReports[i].Priority);
-                lstSavedReports.Items.Add($"{i + 1}. {sortedReports[i].Description}. Priority: {priorityText}");
+                MessageBox.Show("Please select a sort order.", "No Sort Order Selected", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
             }
+            else
+            {
+                var selectedItem = (ComboBoxItem)cmbSortOrder.SelectedItem;
+                bool ascending = selectedItem.Tag.ToString() == "Ascending";
+                var sortedReports = SavedReports.GetReportsSortedByPriority(ascending);
+                lstSavedReports.Items.Clear();
+                for (int i = 0; i < sortedReports.Count; i++)
+                {
+                    string priorityText = GetPriorityText(sortedReports[i].Priority);
+                    lstSavedReports.Items.Add($"{i + 1}. {sortedReports[i].Description}. Priority: {priorityText}");
+                }
+            }
+            
         }
 
 
