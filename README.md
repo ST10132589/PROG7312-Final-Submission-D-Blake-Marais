@@ -77,14 +77,24 @@ Once you run the app you will be presented with the four buttons representing th
 All three trees are populated in the ServiceRequestViewModel when the ServiceRequests are created
 ## Binary Tree
 - The Basic Binary Tree is used to simply store all of the requests and bind them to the DataGrid. I can tell this is much more efficient than using a list, because I use a list for the events/announcements and the load time is considerably higher (especially when filtering/ordering by)
+- It is also used as it has faster load times compared to lists, especially as the dataset grows,
+- Simplified hierarchical organization of service requests,
+- and it facilitates efficient traversal for binding and displaying data in the UI.
 ## Binary Search Tree
-- This is used to search By ID. This is very efficient for lookup's and also the ordered traversal will save them in order of RequestID, making a BST the perfect use case for the search by ID.
+- This is used to search By ID.
+- The BST's in-order traversal automatically arranges service requests in ascending order of their IDs.
+- This ensures data is displayed in a sorted manner without requiring additional sorting operations.
+- Searching by ID in a BST takes 𝑂(log⁡𝑛) time on average, as opposed to 𝑂(𝑛) in a linear search through a list[^1].
 ## AVL Tree
-- The AVL Tree is used to order by category, as the tree is self balancing, it is easy to fetch all of the categories and reorder the DataGrid
+- The AVL Tree is used to order by category, as the tree is self balancing, this makes easy to fetch all of the categories and reorder the DataGrid as...
+- Categories can have uneven distributions of service requests. The self-balancing nature of the AVL Tree ensures that these imbalances do not degrade performance.
+- Efficient ordering is vital for smooth interaction with the DataGrid when users reorder service requests by category.
 # Implementation of Graphs & Heaps
 ## Graph & Graph Traversal
 - The Graph functionality is used in the Dependency Graph Diagram and is crucial for allowing an efficient and accurate representation of the Service Requests and their dependencies.
 - You can see the usage in the GraphHelper.cs file in the Helpers folder.
+- It allowed me to make a highly customizable and accurate graphical representation of all of the service requests as well as all of their dependencies.
+- 
 ## Heaps
 - I struggled to think of where to use the heaps in the ServiceRequests as I already was using an AVL Tree for priority.
 - So I added the functionality to the reports system from part 1!
@@ -92,3 +102,5 @@ All three trees are populated in the ServiceRequestViewModel when the ServiceReq
 - Or from lowest to highest (MinHeap)
 - Priorities are exactly what Heaps are good at and I even added coded to translate the priority value from it's numerical value to it's word equivalent.
 - 1 = High 2 = Medium 3 = Low
+
+[^1]: GeeksforGeeks. (2018). Complexity of different operations in Binary tree, Binary Search Tree and AVL tree - GeeksforGeeks. [online] Available at: [https://www.geeksforgeeks.org/complexity-different-operations-binary-tree-binary-search-tree-avl-tree/].
