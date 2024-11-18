@@ -3,6 +3,8 @@
 To get this wonderful project to compile in Visual Studio Community will be a bit finnicky as the file structure is all messed up. 
 My old SSD got corrupted midway between Part 2 and 3's submissions. I only realised the folder would be an issue when I initially uploaded it to GitHub. Please be patient! And follow Closely!!
 
+***HERE IS THE DEMO VID, I SHOW HOW YOU INSTALL IT HERE AS WELL*** [Youtube Video](https://www.youtube.com/watch?v=tcL0homkH8U&ab_channel=Fourge) 
+
 ## Here are the steps
 -  Make sure your Visual Studio Community is up to date.
 -  Click on the Green 'Code Button' on the repository.
