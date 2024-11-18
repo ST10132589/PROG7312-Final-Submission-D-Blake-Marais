@@ -100,7 +100,7 @@ All three trees are populated in the ServiceRequestViewModel when the ServiceReq
 - So I added the functionality to the reports system from part 1!
 - It allows the user to efficiently order the reports from highest to lowest priority (MaxHeap)
 - Or from lowest to highest (MinHeap)
-- Priorities are exactly what Heaps are good at and I even added coded to translate the priority value from it's numerical value to it's word equivalent.
+- Priorities are exactly what Heaps are good at and I even added coded to translate the priority value from it's numerical value to it's word equivalent. Just so it is easily digestable for the user.
 - 1 = High 2 = Medium 3 = Low
 
 [^1]: GeeksforGeeks. (2018). Complexity of different operations in Binary tree, Binary Search Tree and AVL tree - GeeksforGeeks. [online] Available at: [https://www.geeksforgeeks.org/complexity-different-operations-binary-tree-binary-search-tree-avl-tree/].
