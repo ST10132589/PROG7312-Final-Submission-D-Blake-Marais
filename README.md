@@ -96,7 +96,6 @@ All three trees are populated in the ServiceRequestViewModel when the ServiceReq
 - The Graph functionality is used in the Dependency Graph Diagram and is crucial for allowing an efficient and accurate representation of the Service Requests and their dependencies.
 - You can see the usage in the GraphHelper.cs file in the Helpers folder.
 - It allowed me to make a highly customizable and accurate graphical representation of all of the service requests as well as all of their dependencies.
-- 
 ## Heaps
 - I struggled to think of where to use the heaps in the ServiceRequests as I already was using an AVL Tree for priority.
 - So I added the functionality to the reports system from part 1!
